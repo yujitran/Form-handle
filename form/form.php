@@ -1,12 +1,3 @@
-<?php
-
-    // $data[] = ["fullname" => "", "phone" => "", "email" => "", "country" => "", "dictrict" => "", "street" => ""];
-    // setcookie("listUSer", json_encode($data));
-    // if(!isset($_COOKIE["listUser"])) {
-    //   // var_dump($_COOKIE);
-    // }
-?>
-
 <?php include("validateFormPhp.php"); ?>
 <?php include("updateUsers.php"); ?>
 
@@ -296,4 +287,5 @@
   </body>
   <script src="js/validateFormJs.js"></script>
   <script src="js/addTableEdit.js"></script>
+
 </html>
