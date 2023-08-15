@@ -1,4 +1,4 @@
-    function validateInputFname() {
+   function validateInputFname() {
         document.getElementById("alert-fullname").innerHTML = "";
         let fullname = document.getElementById("fullname").value;
   

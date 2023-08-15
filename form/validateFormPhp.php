@@ -2,6 +2,7 @@
 $error = [];
 
 if($_SERVER["REQUEST_METHOD"]=="POST") {
+
   $fullname = $_POST['fullname'];
   $phonenum = $_POST['phone-number'];
   $email = $_POST['email'];
@@ -152,7 +153,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST") {
   if(empty(($street))) {
     $error["street"]["require"] = "Bạn không được để trống!";
   }    
-  
 
 }
 

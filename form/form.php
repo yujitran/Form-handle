@@ -1,5 +1,15 @@
+<?php
+
+    // $data[] = ["fullname" => "", "phone" => "", "email" => "", "country" => "", "dictrict" => "", "street" => ""];
+    // setcookie("listUSer", json_encode($data));
+    // if(!isset($_COOKIE["listUser"])) {
+    //   // var_dump($_COOKIE);
+    // }
+?>
+
 <?php include("validateFormPhp.php"); ?>
 <?php include("updateUsers.php"); ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +53,13 @@
         text-align: center;
       }
 
+      #editor {
+        border: 1px solid #333;
+        width: 100%;
+        height: auto;
+        margin-top: 100px;
+      }
+
       #editor td {
         height: 100px;
         text-align: center;
@@ -77,7 +94,7 @@
   <body>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <table class="form">
-        <input type="hidden" id="idRow" />
+        <input class = "idHidden" type="hidden" id="idRow" />
         <tr>
           <td>Fullname</td>  
           <td>
@@ -151,7 +168,7 @@
                   elseif(!empty($error["email"]["emptyDot"])){echo $error["email"]["emptyDot"];}
                   elseif(!empty($error["email"]["endDot"])){echo $error["email"]["endDot"];}
                   ?>
-                </span>
+                </span> 
             </p>
           </td>
         </tr>
@@ -237,16 +254,10 @@
         </tr>
       </table>
     </form>
-    <table
-      style="
-        border: 1px solid #333;
-        width: 100%;
-        height: auto;
-        margin-top: 100px;
-      "
-      id="editor"
-    >
+
+    <table id="editor" >
       <tr>
+        <th>ID</th>
         <th>Fullname</th>
         <th>Phone</th>
         <th>Email</th>
@@ -256,9 +267,33 @@
         <th>Gender</th>
         <th>Action</th>
       </tr>
+      <?php
+
+      $ote = [];
+        // $data[] = json_decode($_COOKIE['listUser']);
+        
+  
+          $ote = json_decode($_COOKIE['listUser']);
+          // print_r($ote);
+         
+          foreach($ote as $user) {
+            echo "<tr>";
+            $i = 0;
+            foreach($user as $val) {
+              $i++;
+                echo "<td col-name='B$i'>".$val."</td>";
+            }
+            echo "<td>"
+            ."<button class='btn-edit' onclick='createEventClickEdit(this)'>Edit"."</button>".
+            "<button class='btn-del' onclick='createEventClickDel(this)'>Delete"."</button>".
+            "</td>";
+            echo "</tr>";
+          }
+        
+      
+      ?>
     </table>
   </body>
-<script src="js/validateFormJs.js"></script>
-<script src="js/addTableEdit.js"></script>
-
+  <script src="js/validateFormJs.js"></script>
+  <script src="js/addTableEdit.js"></script>
 </html>
