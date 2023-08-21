@@ -100,267 +100,280 @@
   var tableEdit = document.getElementById("editor");
 
   //validate form to table
-  document.getElementById("addTable").setAttribute("onclick", "validateForm()");
+  document.getElementById("submit").setAttribute("onclick", "validateForm()");
 
-  //click submit add info
-  // document.getElementById("addTable").addEventListener("click", () => {
+  // click submit add info
+  document.getElementById("submit").addEventListener("click", () => {
   //   //Nếu id đó không tồn tịa => add row mới
-  //   if (document.getElementById("idRow").value == "") {
-  //     let fullname = document.getElementById("fullname").value;
-  //     let phone = document.getElementById("phone-number").value;
-  //     let email = document.getElementById("email").value;
-  //     let country = document.getElementById("country").value;
-  //     let district = document.getElementById("district").value;
-  //     let street = document.getElementById("street").value;
-  //     let gender = document.querySelector(
-  //       'input[name="gender"]:checked').value;
+    // if (document.getElementById("idRow").value == "") {
+    //   let fullname = document.getElementById("fullname").value;
+    //   let phone = document.getElementById("phone-number").value;
+    //   let email = document.getElementById("email").value;
+    //   let country = document.getElementById("country").value;
+    //   let district = document.getElementById("district").value;
+    //   let street = document.getElementById("street").value;
+    //   let gender = document.querySelector(
+    //     'input[name="gender"]:checked').value;
 
-  //     //get table edit
-  //     let arrayInfo = [
-  //       fullname,
-  //       phone,
-  //       email,
-  //       country,
-  //       district,
-  //       street,
-  //       gender,
-  //     ];
+    //   //get table edit
+    //   let arrayInfo = [
+    //     fullname,
+    //     phone,
+    //     email,
+    //     country,
+    //     district,
+    //     street,
+    //     gender,
+    //   ];
 
-  //     for (let s = 0; s < arrayInfo.length; s++) {
-  //       if (arrayInfo[s] == "") {
-  //         return;
-  //       }
-  //     }
+    //   for (let s = 0; s < arrayInfo.length; s++) {
+    //     if (arrayInfo[s] == "") {
+    //       return;
+    //     }
+    //   }
 
-  //     validateInputFname(fullname);
+    //   validateInputFname(fullname);
 
-  //     //validate fullname to add table
-  //     let checkValidateFname = validateFullname(fullname);
-  //     if (checkValidateFname.status === false) {
-  //       // return;
-  //     }
+    //   //validate fullname to add table
+    //   let checkValidateFname = validateFullname(fullname);
+    //   if (checkValidateFname.status === false) {
+    //     // return;
+    //   }
 
-  //     //validate phone to add table
-  //     let checkValidatePhone = validatePhone(phone);
+    //   //validate phone to add table
+    //   let checkValidatePhone = validatePhone(phone);
 
-  //     if (checkValidatePhone.status === false) {
-  //       return;
-  //     }
+    //   if (checkValidatePhone.status === false) {
+    //     return;
+    //   }
 
-  //     //validate Email to add table
-  //     let checkValidateEmail = validateEmail(email);
-  //     if (checkValidateEmail.status === false) {
-  //       return;
-  //     }
+    //   //validate Email to add table
+    //   let checkValidateEmail = validateEmail(email);
+    //   if (checkValidateEmail.status === false) {
+    //     return;
+    //   }
 
-  //     //add info
-  //     let randLetter = String.fromCharCode(
-  //       65 + Math.floor(Math.random() * 26)
-  //     );
-  //     let uniqid = randLetter + Date.now();
+    //   //add info
+    //   let randLetter = String.fromCharCode(
+    //     65 + Math.floor(Math.random() * 26)
+    //   );
+    //   let uniqid = randLetter + Date.now();
 
-  //     //set id for row
-  //     let row = tableEdit.insertRow(-1);
-  //     row.setAttribute("id", uniqid);
-  //     //create column
-  //     for (let i = 0; i < arrayInfo.length; i++) {
-  //       row.insertCell(-1).innerHTML = arrayInfo[i];
-  //     }
+    //   //set id for row
+    //   let row = tableEdit.insertRow(-1);
+    //   row.setAttribute("id", uniqid);
+    //   //create column
+    //   for (let i = 0; i < arrayInfo.length; i++) {
+    //     row.insertCell(-1).innerHTML = arrayInfo[i];
+    //   }
 
-  //     // create Edit and Delete button
-  //     let edit = document.createElement("button");
-  //     let textButtonEdit = document.createTextNode("Edit");
-  //     edit.className = "btn-edit";
-  //     edit.setAttribute("onclick", "createEventClickEdit(this)");
-  //     edit.appendChild(textButtonEdit);
+    //   // create Edit and Delete button
+    //   let edit = document.createElement("button");
+    //   let textButtonEdit = document.createTextNode("Edit");
+    //   edit.className = "btn-edit";
+    //   edit.setAttribute("onclick", "createEventClickEdit(this)");
+    //   edit.appendChild(textButtonEdit);
 
-  //     let del = document.createElement("button");
-  //     let textButtonDelete = document.createTextNode("Delete");
-  //     del.className = "btn-del";
-  //     del.setAttribute("onclick", "createEventClickDel(this)");
-  //     del.appendChild(textButtonDelete);
+    //   let del = document.createElement("button");
+    //   let textButtonDelete = document.createTextNode("Delete");
+    //   del.className = "btn-del";
+    //   del.setAttribute("onclick", "createEventClickDel(this)");
+    //   del.appendChild(textButtonDelete);
 
-  //     // add Edit and Delete button to column
-  //     row.insertCell(-1).append(edit, del);
+    //   // add Edit and Delete button to column
+    //   row.insertCell(-1).append(edit, del);
 
-  //     //set class-name for column
-  //     lengthRow = row.querySelectorAll("td").length;
-  //     for (let j = 0; j < lengthRow; j++) {
-  //       //Nếu column chứa nút edit thì không cần thêm class
-  //       if (
-  //         row.querySelectorAll("td")[j] !==
-  //         row.querySelector(".btn-edit").parentElement
-  //       ) {
-  //         row
-  //           .querySelectorAll("td")
-  //           [j].setAttribute("col-name", "B" + 1 + parseInt(j));
-  //       } else {
-  //         row
-  //           .querySelectorAll("td")
-  //           [j].setAttribute("col-button", "C" + 2 + parseInt(j));
-  //       }
-  //     }
+    //   //set class-name for column
+    //   lengthRow = row.querySelectorAll("td").length;
+    //   for (let j = 0; j < lengthRow; j++) {
+    //     //Nếu column chứa nút edit thì không cần thêm class
+    //     if (
+    //       row.querySelectorAll("td")[j] !==
+    //       row.querySelector(".btn-edit").parentElement
+    //     ) {
+    //       row
+    //         .querySelectorAll("td")
+    //         [j].setAttribute("col-name", "B" + 1 + parseInt(j));
+    //     } else {
+    //       row
+    //         .querySelectorAll("td")
+    //         [j].setAttribute("col-button", "C" + 2 + parseInt(j));
+    //     }
+    //   }
 
-  //     // Khi add vào table edit xong sẽ reset lại form
-  //     document.getElementById("fullname").value = "";
-  //     document.getElementById("phone-number").value = "";
-  //     document.getElementById("email").value = "";
-  //     let countryOp = document.getElementById("country");
-  //     countryOp.value = "";
-  //     countryOp.selected = "false";
-  //     countrySlect.innerHTML = "<option></option>";
+    //   // Khi add vào table edit xong sẽ reset lại form
+    //   document.getElementById("fullname").value = "";
+    //   document.getElementById("phone-number").value = "";
+    //   document.getElementById("email").value = "";
+    //   let countryOp = document.getElementById("country");
+    //   countryOp.value = "";
+    //   countryOp.selected = "false";
+    //   countrySlect.innerHTML = "<option></option>";
 
-  //     let districtOp = document.getElementById("district");
-  //     districtOp.value = "";
-  //     districtOp.selected = "false";
-  //     districtSlect.innerHTML = "<option></option>";
+    //   let districtOp = document.getElementById("district");
+    //   districtOp.value = "";
+    //   districtOp.selected = "false";
+    //   districtSlect.innerHTML = "<option></option>";
 
-  //     let streetOp = document.getElementById("street");
-  //     streetOp.value = "";
-  //     streetOp.selected = "false";
-  //     streetSlect.innerHTML = "<option></option>";
-  //     document.querySelector('input[name="gender"]:checked').checked = false;
+    //   let streetOp = document.getElementById("street");
+    //   streetOp.value = "";
+    //   streetOp.selected = "false";
+    //   streetSlect.innerHTML = "<option></option>";
+    //   document.querySelector('input[name="gender"]:checked').checked = false;
 
-  //     // set up lại selection country
-  //     arrayLocation.forEach(function addCity(item) {
-  //       let option = document.createElement("option");
-  //       option.text = item.country;
-  //       option.value = item.country;
-  //       countrySlect.appendChild(option);
-  //     });
-  //   }
-  //   // Trùng id => edit row có id đó
-  //   else {
-  //     let fullname = document.getElementById("fullname").value;
-  //     let phone = document.getElementById("phone-number").value;
-  //     let email = document.getElementById("email").value;
-  //     let country = document.getElementById("country").value;
-  //     let district = document.getElementById("district").value;
-  //     let street = document.getElementById("street").value;
-  //     let gender = document.querySelector(
-  //       'input[name="gender"]:checked'
-  //     ).value;
+    //   // set up lại selection country
+    //   arrayLocation.forEach(function addCity(item) {
+    //     let option = document.createElement("option");
+    //     option.text = item.country;
+    //     option.value = item.country;
+    //     countrySlect.appendChild(option);
+    //   });
+    // }
+    // Trùng id => edit row có id đó
+    if (document.getElementById("idRow").value !== ""){
+    //   let fullname = document.getElementById("fullname").value;
+    //   let phone = document.getElementById("phone-number").value;
+    //   let email = document.getElementById("email").value;
+    //   let country = document.getElementById("country").value;
+    //   let district = document.getElementById("district").value;
+    //   let street = document.getElementById("street").value;
+    //   let gender = document.querySelector(
+    //     'input[name="gender"]:checked'
+    //   ).value;
 
-  //     //get table edit
-  //     let arrayInfos = [
-  //       fullname,
-  //       phone,
-  //       email,
-  //       country,
-  //       district,
-  //       street,
-  //       gender,
-  //     ];
+    //   //get table edit
+    //   let arrayInfos = [
+    //     fullname,
+    //     phone,
+    //     email,
+    //     country,
+    //     district,
+    //     street,
+    //     gender,
+    //   ];
 
-  //     //value trống => không cho submit
-  //     for (let s = 0; s < arrayInfos.length; s++) {
-  //       if (arrayInfos[s] == "") {
-  //         // return;
-  //       }
-  //     }
+    //   //value trống => không cho submit
+    //   for (let s = 0; s < arrayInfos.length; s++) {
+    //     if (arrayInfos[s] == "") {
+    //       return;
+    //     }
+    //   }
 
-  //     //validate fullname to add table
-  //     let checkValidateFname = validateFullname(fullname);
-  //     if (checkValidateFname.status === false) {
-  //       // return;
-  //     }
+    //   //validate fullname to add table
+    //   let checkValidateFname = validateFullname(fullname);
+    //   if (checkValidateFname.status === false) {
+    //     // return;
+    //   }
 
-  //     //validate phone to add table
-  //     let checkValidatePhone = validatePhone(phone);
+    //   //validate phone to add table
+    //   let checkValidatePhone = validatePhone(phone);
 
-  //     if (checkValidatePhone.status === false) {
-  //       return;
-  //     }
+    //   if (checkValidatePhone.status === false) {
+    //     return;
+    //   }
 
-  //     //validate Email to add table
-  //     let checkValidateEmail = validateEmail(email);
-  //     if (checkValidateEmail.status === false) {
-  //       return;
-  //     }
+    //   //validate Email to add table
+    //   let checkValidateEmail = validateEmail(email);
+    //   if (checkValidateEmail.status === false) {
+    //     return;
+    //   }
 
-  //     //check id của form hiện tại ở row nào trong table Edit
-  //     tableEdit.querySelectorAll("tr").forEach((row) => {
-  //       //reset lại row đó
-  //       if (row.getAttribute("id") == document.getElementById("idRow").value) {
-  //         row.querySelectorAll("td").forEach((td) => {
-  //           td.textContent = "";
-  //         });
+      //check id của form hiện tại ở row nào trong table Edit
+      tableEdit.querySelectorAll("tr").forEach((row) => {
+        //reset lại row đó
+        if (row.querySelector('[col-name="B1"]').innerText == document.getElementById("idRow").value) {
+          row.querySelectorAll("td").forEach((td) => {
+            td.textContent = "";
+            alert("hrloo id");
 
-  //         //up lại thông tin trên form vào row đó
-  //         row.querySelectorAll("td").forEach((item) => {
-  //           if (item.getAttribute("col-name") == "B10") {
-  //             item.textContent = fullname;
-  //           }
-  //           if (item.getAttribute("col-name") == "B11") {
-  //             item.textContent = phone;
-  //           }
-  //           if (item.getAttribute("col-name") == "B12") {
-  //             item.textContent = email;
-  //           }
-  //           if (item.getAttribute("col-name") == "B13") {
-  //             item.textContent = country;
-  //           }
-  //           if (item.getAttribute("col-name") == "B14") {
-  //             item.textContent = district;
-  //           }
-  //           if (item.getAttribute("col-name") == "B15") {
-  //             item.textContent = street;
-  //           }
-  //           if (item.getAttribute("col-name") == "B16") {
-  //             item.textContent = gender;
-  //           }
-  //           if (item.getAttribute("col-button") == "C27") {
-  //             // create Edit and Delete button
-  //             let edit = document.createElement("button");
-  //             let textButtonEdit = document.createTextNode("Edit");
-  //             edit.className = "btn-edit";
-  //             edit.setAttribute("onclick", "createEventClickEdit(this)");
-  //             edit.appendChild(textButtonEdit);
+          //up lại thông tin trên form vào row đó
+          // row.querySelectorAll("td").forEach((item) => {
+          //   if (item.getAttribute("col-name") == "B1") {
+          //     item.textContent = document.getElementById("idRow").value;
+          //   }
+          //   if (item.getAttribute("col-name") == "B2") {
+          //     item.textContent = fullname;
+          //   }
+          //   if (item.getAttribute("col-name") == "B3") {
+          //     item.textContent = phone;
+          //   }
+          //   if (item.getAttribute("col-name") == "B4") {
+          //     item.textContent = email;
+          //   }
+          //   if (item.getAttribute("col-name") == "B5") {
+          //     item.textContent = country;
+          //   }
+          //   if (item.getAttribute("col-name") == "B6") {
+          //     item.textContent = district;
+          //   }
+          //   if (item.getAttribute("col-name") == "B7") {
+          //     item.textContent = street;
+          //   }
+          //   if (item.getAttribute("col-name") == "B8") {
+          //     item.textContent = gender;
+          //   }
+          //   if (item.getAttribute("col-button") == "B9") {
+          //     // create Edit and Delete button
+          //     let edit = document.createElement("button");
+          //     let textButtonEdit = document.createTextNode("Edit");
+          //     edit.className = "btn-edit";
+          //     edit.setAttribute("onclick", "createEventClickEdit(this)");
+          //     edit.appendChild(textButtonEdit);
 
-  //             let del = document.createElement("button");
-  //             let textButtonDelete = document.createTextNode("Delete");
-  //             del.className = "btn-del";
-  //             del.setAttribute("onclick", "createEventClickDel(this)");
-  //             del.appendChild(textButtonDelete);
+          //     let del = document.createElement("button");
+          //     let textButtonDelete = document.createTextNode("Delete");
+          //     del.className = "btn-del";
+          //     del.setAttribute("onclick", "createEventClickDel(this)");
+          //     del.appendChild(textButtonDelete);
 
-  //             //append vào td đó
-  //             item.append(edit, del);
-  //           }
-  //         });
-  //       }
-  //     });
+          //     //append vào td đó
+          //     item.append(edit, del);
+          //   }
+          // });
+        });
+        }
+      });
 
-  //     // Khi add vào table edit xong sẽ reset lại form
-  //     document.getElementById("idRow").value = "";
-  //     document.getElementById("fullname").value = "";
-  //     document.getElementById("phone-number").value = "";
-  //     document.getElementById("email").value = "";
-  //     let countryOp = document.getElementById("country");
-  //     countryOp.value = "";
-  //     countryOp.selected = "false";
-  //     countrySlect.innerHTML = "<option></option>";
+      // Khi add vào table edit xong sẽ reset lại form
+      // document.getElementById("idRow").value = "";
+      // document.getElementById("fullname").value = "";
+      // document.getElementById("phone-number").value = "";
+      // document.getElementById("email").value = "";
+      // let countryOp = document.getElementById("country");
+      // countryOp.value = "";
+      // countryOp.selected = "false";
+      // countrySlect.innerHTML = "<option></option>";
 
-  //     let districtOp = document.getElementById("district");
-  //     districtOp.value = "";
-  //     districtOp.selected = "false";
-  //     districtSlect.innerHTML = "<option></option>";
+      // let districtOp = document.getElementById("district");
+      // districtOp.value = "";
+      // districtOp.selected = "false";
+      // districtSlect.innerHTML = "<option></option>";
 
-  //     let streetOp = document.getElementById("street");
-  //     streetOp.value = "";
-  //     streetOp.selected = "false";
-  //     streetSlect.innerHTML = "<option></option>";
+      // let streetOp = document.getElementById("street");
+      // streetOp.value = "";
+      // streetOp.selected = "false";
+      // streetSlect.innerHTML = "<option></option>";
 
-  //     document.querySelector('input[name="gender"]:checked').checked = false;
+      // document.querySelector('input[name="gender"]:checked').checked = false;
 
-  //     // set up lại selection country
-  //     arrayLocation.forEach(function addCity(item) {
-  //       let option = document.createElement("option");
-  //       option.text = item.country;
-  //       option.value = item.country;
-  //       countrySlect.appendChild(option);
-  //     });
-  //   }
-  // });
+      // // set up lại selection country
+      // arrayLocation.forEach(function addCity(item) {
+      //   let option = document.createElement("option");
+      //   option.text = item.country;
+      //   option.value = item.country;
+      //   countrySlect.appendChild(option);
+      // });
+    }
+    // nếu trùng id => reset row and add new row
+    // tableEdit.querySelectorAll("tr").forEach(row => {
+    //   if (document.getElementById("idRow").value == row.querySelector('col-name="B1"').innerText) {
+    //     console.log(row.querySelector('col-name="B1"').innerText);
+    //       row.remove();
+    //       document.getElementById("idRow").value = "";
+    //   }      
+    // });
+
+  });
   // end Submit
 
   // function button Edit
@@ -430,7 +443,6 @@
               //Nếu có obj tại district tồn tại => add street
               if (value[fields["district"]]) {
                 streetSlect.innerHTML = "<option></option>";
-                console.log(value[fields["district"]])
                 addToStreet(value[fields["district"]]);
                 document.getElementById("street").value = fields["street"];
                 upStreet.selected = "true";
@@ -458,5 +470,5 @@
     removeRow.remove();
     document.getElementById("idRow").value = "";
   }
-  //end function delete button
+  // end function delete button
 

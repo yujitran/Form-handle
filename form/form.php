@@ -85,7 +85,7 @@
   <body>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <table class="form">
-        <input class = "idHidden" type="hidden" id="idRow" />
+        <input name="idHidden" class="idHidden" type="hidden" id="idRow" />
         <tr>
           <td>Fullname</td>  
           <td>
@@ -261,31 +261,41 @@
       <?php
 
       $ote = [];
-        // $data[] = json_decode($_COOKIE['listUser']);
         
+        print_r($ote);
+        if(isset($_POST['submit'])) {          
+            $ote = json_decode($_COOKIE['listUser']);
+            foreach($ote as $user => $key) {  
   
-          $ote = json_decode($_COOKIE['listUser']);
-          // print_r($ote);
-         
-          foreach($ote as $user) {
-            echo "<tr>";
-            $i = 0;
-            foreach($user as $val) {
-              $i++;
-                echo "<td col-name='B$i'>".$val."</td>";
-            }
-            echo "<td>"
-            ."<button class='btn-edit' onclick='createEventClickEdit(this)'>Edit"."</button>".
-            "<button class='btn-del' onclick='createEventClickDel(this)'>Delete"."</button>".
-            "</td>";
-            echo "</tr>";
+              echo "<tr>";
+              $i = 0;
+              foreach($key as $val) {
+              // echo "<pre>";
+              // var_dump($val);
+              // echo "</pre>";
+                if($val !== "") {
+                  $i++;
+                  echo "<td col-name='B$i'>".$val."</td>";
+                }
+              }
+              if($key !== "") {
+              echo 
+                  "<td col-button='B9'>"
+                  ."<button class='btn-edit' onclick='createEventClickEdit(this)'>Edit"."</button>".
+                  "<button class='btn-del' onclick='createEventClickDel(this)'>Delete"."</button>".
+                  "</td>";  
+
+              echo "</tr>";                
+              }
+    
+            } 
+            
           }
-        
-      
-      ?>
+
+    ?>
     </table>
   </body>
-  <script src="js/validateFormJs.js"></script>
+  <!-- <script src="js/validateFormJs.js"></script> -->
   <script src="js/addTableEdit.js"></script>
 
 </html>

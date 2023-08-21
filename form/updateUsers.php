@@ -43,19 +43,41 @@ $data = [];
             //insert form values to db
             $sql = "INSERT INTO users (fullname, email, country, district, street, phone, gender) 
             VALUES ('$fullname', '$email', '$country', '$district', '$street', '$phone', '$gender')";
-    
+        
             //add cookie from form
             $randLetter = uniqid();
-            $data = json_decode($_COOKIE["listUser"]);
-            $data[] =  ["id" => $randLetter, "fullname" => $fullname, "phone" => $phone, "email" => $email, "country" => $country, "district" => $district, "street" => $street, "gender" => $gender];
-            setcookie('listUser', json_encode($data), time() + (86400 * 30), "/");
-            mysqli_query($conn, $sql);     
+            
+            if(!empty($_POST['idHidden'])) {   
+                $objectToRemove = new stdClass();          
+                $data = json_decode($_COOKIE["listUser"]);
+                foreach($data as $user => $key) {
+                    // var_dump($user);
+                    foreach($key as $val => $item) {
+                        if($item == $_POST['idHidden']) {                    
+                            $key = ["id" => "", "fullname" => "", "phone" => "", "email" => "", "country" => "", "district" => "", "street" => "", "gender" => ""];
+                            $key = ["id" => $_POST['idHidden'], "fullname" => $fullname, "phone" => $phone, "email" => $email, "country" => $country, "district" => $district, "street" => $street, "gender" => $gender];
+                            $data[(int)$user] = $key;
+                        };
+                    }
+                }
+      
+                setcookie('listUser', json_encode($data), time() + (86400 * 30), "/");
+                // mysqli_query($conn, $sql);    
+            } 
+            else {
+                $data = json_decode($_COOKIE["listUser"]);
+                $data[] =  ["id" => $randLetter, "fullname" => $fullname, "phone" => $phone, "email" => $email, "country" => $country, "district" => $district, "street" => $street, "gender" => $gender];
+                setcookie('listUser', json_encode($data), time() + (86400 * 30), "/");
+                mysqli_query($conn, $sql);                   
+            }
+  
         }   
     
     }
 
 
-      
-      ?>
 
-    
+
+?>
+
+
