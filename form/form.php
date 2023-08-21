@@ -270,9 +270,6 @@
               echo "<tr>";
               $i = 0;
               foreach($key as $val) {
-              // echo "<pre>";
-              // var_dump($val);
-              // echo "</pre>";
                 if($val !== "") {
                   $i++;
                   echo "<td col-name='B$i'>".$val."</td>";
@@ -284,10 +281,8 @@
                   ."<button class='btn-edit' onclick='createEventClickEdit(this)'>Edit"."</button>".
                   "<button class='btn-del' onclick='createEventClickDel(this)'>Delete"."</button>".
                   "</td>";  
-
               echo "</tr>";                
               }
-    
             } 
             
           }
@@ -295,7 +290,7 @@
     ?>
     </table>
   </body>
-  <!-- <script src="js/validateFormJs.js"></script> -->
+  <script src="js/validateFormJs.js"></script>
   <script src="js/addTableEdit.js"></script>
 
 </html>
