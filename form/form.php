@@ -1,7 +1,10 @@
 <?php include("validateFormPhp.php"); ?>
 <?php include("updateUsers.php"); ?>
+<?php 
+$form_token = uniqid(); 
+setcookie('form_token', $form_token, time() + '3600');
 
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,8 +94,9 @@
 </head>
 
 <body>
-  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
     <table class="form">
+      <input type="hidden" name="form_token" value="<?php echo $form_token; ?>">
       <input name="idHidden" class="idHidden" type="hidden" id="idRow" />
       <tr>
         <td>Fullname</td>
@@ -244,8 +248,10 @@
       </tr>
       <tr>
         <td>
-          <input type="button" class="submit-form" name="" id="addTable" value="Add to table edit" />
+          <input type="file" name="images[]" multiple/>
         </td>
+      </tr>
+      <tr>
         <td>
           <input type="submit" class="submit-form" name="submit" id="submit" value="Submit" />
         </td>
@@ -256,6 +262,7 @@
   <table id="editor">
     <tr>
       <th>ID</th>
+      <th>Images</th>
       <th>Fullname</th>
       <th>Phone</th>
       <th>Email</th>
@@ -266,39 +273,52 @@
       <th>Action</th>
     </tr>
     <?php
+    if(isset($_POST['submit'])) {
+      include('./checkUploads.php'); 
+      //check img files uploads
+    
+      //insert cookie on table
+        $cookieList = [];
+        $cookieList = json_decode($_COOKIE['listUser']);
+        foreach ($cookieList as $user => $key) { 
+            print_r($key);
+            echo "<tr>";
+            $i = 0;
+            //add 
 
-    $ote = [];
-
-  
-      $ote = json_decode($_COOKIE['listUser']);
-      foreach ($ote as $user => $key) {
-  
-          print_r($key);
-          echo "<tr>";
-          $i = 0;
-          foreach ($key as $val) {
-            if ($val !== "") {
-              $i++;
-              echo "<td col_name='B$i'>" . $val . "</td>";
-            }
-          }      
-          foreach ($key as $name => $val) {
-            if($val !== "") {
-              if ($name == 'id') {
-                echo
-                  "<td col-button='B9'>"
-                    . "<button class='btn-edit' onclick='createEventClickEdit(this)'>Edit" . "</button>" .
-                    "<button class='btn-del' onclick='createEventClickDel(this)' data-id='".$val."'>Delete" . "</button>" .
-                    "</td>";      
-                echo "</tr>";             
-              }              
-            }
-
-          }      
-
-      }
-  
-
+            //add info column
+            foreach ($key as $name => $val) {
+              if ($val !== "") {
+                if($name == "images") {
+                  echo "<td col_img='col-img'>";
+                  foreach($val as $img) {
+                    echo "<img src='./uploads/" . $img . "' alt='s' height='50px' width='50px'>";   
+                  }
+                  echo "</td>";
+                }
+                else{
+                    echo "<td col_name='B$i'>" . $val . "</td>";   
+                      $i++;
+                }
+               
+              }
+              
+            }       
+            //add button edit and delete
+            foreach ($key as $name => $val) {
+              if($val !== "") {
+                if ($name == 'id') {
+                  echo
+                    "<td col-button='B9'>"
+                      . "<button class='btn-edit' onclick='createEventClickEdit(this)'>Edit" . "</button>" .
+                      "<button class='btn-del' onclick='createEventClickDel(this)' data-id='".$val."'>Delete" . "</button>" .
+                      "</td>";      
+                  echo "</tr>";             
+                }              
+              }
+            }      
+        }
+    }
     ?>
   </table>
 </body>
@@ -317,10 +337,8 @@
         })
         .done(function() {
           btn.parents('tr').remove();
-          btn.parent('td').remove();
         })
     });
   });
 </script>
-
 </html>

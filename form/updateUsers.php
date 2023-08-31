@@ -6,6 +6,7 @@ $data = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+
     $fullname = $_POST['fullname'];
     $phone = $_POST['phone-number'];
     $email = $_POST['email'];
@@ -13,6 +14,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $district = $_POST['district'];
     $street = $_POST['street'];
     $gender = $_POST['gender'];
+    $containerFileName = [];
+   
+    function reArrayFiless($file){
+        $file_ary = array();
+        $file_count = count($file['name']);
+        $file_key = array_keys($file);
+        
+        for($i=0;$i<$file_count;$i++)
+        {
+            foreach($file_key as $val)
+            {
+                $file_ary[$i][$val] = $file[$val][$i];
+            }
+        }
+        return $file_ary;
+    }
+    $imgs = reArrayFiless($_FILES['images']) ;
+    foreach($imgs as $key) {
+        $containerFileName[] = $key['name'];
+    }
+
 
     $servername = "localhost";
     $username = "root";
@@ -54,8 +76,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // var_dump($user);
                 foreach ($key as $val => $item) {
                     if ($item == $_POST['idHidden']) {
-                        $key = ["id" => "", "fullname" => "", "phone" => "", "email" => "", "country" => "", "district" => "", "street" => "", "gender" => ""];
-                        $key = ["id" => $_POST['idHidden'], "fullname" => $fullname, "phone" => $phone, "email" => $email, "country" => $country, "district" => $district, "street" => $street, "gender" => $gender];
+                        $key = ["id" => "", "images" => "", "fullname" => "", "phone" => "", "email" => "", "country" => "", "district" => "", "street" => "", "gender" => ""];
+                        $key = ["id" => $_POST['idHidden'], "images" => $containerFileName, "fullname" => $fullname, "phone" => $phone, "email" => $email, "country" => $country, "district" => $district, "street" => $street, "gender" => $gender];
                         $data[(int)$user] = $key;
                     };
                 }
@@ -64,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         } else {
             $data = json_decode($_COOKIE["listUser"]);
-            $data[] =  ["id" => $randLetter, "fullname" => $fullname, "phone" => $phone, "email" => $email, "country" => $country, "district" => $district, "street" => $street, "gender" => $gender];
+            $data[] =  ["id" => $randLetter, "images" => $containerFileName, "fullname" => $fullname, "phone" => $phone, "email" => $email, "country" => $country, "district" => $district, "street" => $street, "gender" => $gender];
             setcookie('listUser', json_encode($data), time() + (86400 * 30), "/");
             mysqli_query($conn, $sql);
         }

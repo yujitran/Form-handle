@@ -101,18 +101,18 @@
 
   //validate form to table
   document.getElementById("submit").setAttribute("onclick", "validateForm()");
-    document.onreadystatechange = () => {
+  //   document.onreadystatechange = () => {
 
-    if(document.readyState === 'complete') {
-        //add data id to delete button
-      tableEdit.querySelectorAll('tr').forEach(row => {
-            if(row.querySelector('.btn-del')) {
-            id = row.querySelector('[col_name="B1"]').innerText;
-            row.querySelector('.btn-del').setAttribute("data-id", id);
-          }
-      });      
-    }
-  }
+  //   if(document.readyState === 'complete') {
+  //       //add data id to delete button
+  //     tableEdit.querySelectorAll('tr').forEach(row => {
+  //           if(row.querySelector('.btn-del')) {
+  //           id = row.querySelector('[col_name="B1"]').innerText;
+  //           row.querySelector('.btn-del').setAttribute("data-id", id);
+  //         }
+  //     });      
+  //   }
+  // }
  
 
   // click submit add info
@@ -197,14 +197,14 @@
 
     //đặt tên cho các field col
     let fields = [];
-    fields["id"] = data["B1"];
-    fields["fullname"] = data["B2"];
-    fields["phone"] = data["B3"];
-    fields["email"] = data["B4"];
-    fields["country"] = data["B5"];
-    fields["district"] = data["B6"];
-    fields["street"] = data["B7"];
-    fields["gender"] = data["B8"];
+    fields["id"] = data["B0"];
+    fields["fullname"] = data["B1"];
+    fields["phone"] = data["B2"];
+    fields["email"] = data["B3"];
+    fields["country"] = data["B4"];
+    fields["district"] = data["B5"];
+    fields["street"] = data["B6"];
+    fields["gender"] = data["B7"];
 
     //up value lên form
     document.getElementById("fullname").value = fields["fullname"];
@@ -275,4 +275,3 @@
   // }); 
   // }
   // // end function delete button
-

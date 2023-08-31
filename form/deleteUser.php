@@ -7,7 +7,7 @@ foreach ($data as $user => $key) {
     // var_dump($user);
     foreach ($key as $val => $item) {
         if ($item == $id) {
-            $key = ["id" => "", "fullname" => "", "phone" => "", "email" => "", "country" => "", "district" => "", "street" => "", "gender" => ""];
+            $key = ["id" => "", "images" => "", "fullname" => "", "phone" => "", "email" => "", "country" => "", "district" => "", "street" => "", "gender" => ""];
             $data[(int)$user] = $key;
         }
     }
