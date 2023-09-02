@@ -70,7 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $randLetter = uniqid();
 
         if (!empty($_POST['idHidden'])) {
-            $objectToRemove = new stdClass();
             $data = json_decode($_COOKIE["listUser"]);
             foreach ($data as $user => $key) {
                 // var_dump($user);

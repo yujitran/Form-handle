@@ -299,10 +299,8 @@ setcookie('form_token', $form_token, time() + '3600');
                 else{
                     echo "<td col_name='B$i'>" . $val . "</td>";   
                       $i++;
-                }
-               
+                }               
               }
-              
             }       
             //add button edit and delete
             foreach ($key as $name => $val) {

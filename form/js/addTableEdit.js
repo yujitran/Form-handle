@@ -182,7 +182,7 @@
     //get row
     let rowData = domBtn.parentElement.parentElement;
     //set value id cho form để edit tại id đó
-    document.getElementById("idRow").setAttribute("value", rowData.querySelector('[col_name="B1"]').innerText);
+    document.getElementById("idRow").setAttribute("value", rowData.querySelector('[col_name="B0"]').innerText);
     data["id"] = document.getElementById("idRow").value;
 
     let cols = rowData.querySelectorAll("td");
