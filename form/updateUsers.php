@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $street = $_POST['street'];
     $gender = $_POST['gender'];
     $containerFileName = [];
-   
+
+    //hàm sắp xếp lại file array
     function reArrayFiless($file){
         $file_ary = array();
         $file_count = count($file['name']);
@@ -30,7 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         return $file_ary;
     }
+
     $imgs = reArrayFiless($_FILES['images']) ;
+    //lấy name paths
     foreach($imgs as $key) {
         $containerFileName[] = $key['name'];
     }

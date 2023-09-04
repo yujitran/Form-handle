@@ -1,9 +1,9 @@
 <?php include("validateFormPhp.php"); ?>
 <?php include("updateUsers.php"); ?>
 <?php 
+//tạo token để mỗi khi submit và reset lại trang sẽ không bị gửi file 2 lần
 $form_token = uniqid(); 
 setcookie('form_token', $form_token, time() + '3600');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

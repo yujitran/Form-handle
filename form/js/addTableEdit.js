@@ -101,19 +101,6 @@
 
   //validate form to table
   document.getElementById("submit").setAttribute("onclick", "validateForm()");
-  //   document.onreadystatechange = () => {
-
-  //   if(document.readyState === 'complete') {
-  //       //add data id to delete button
-  //     tableEdit.querySelectorAll('tr').forEach(row => {
-  //           if(row.querySelector('.btn-del')) {
-  //           id = row.querySelector('[col_name="B1"]').innerText;
-  //           row.querySelector('.btn-del').setAttribute("data-id", id);
-  //         }
-  //     });      
-  //   }
-  // }
- 
 
   // click submit add info
   document.getElementById("submit").addEventListener("click", () => {
@@ -264,14 +251,3 @@
   }
   //end function Edit
 
-  // function delete button
-  // function createEventClickDel(domBtn) {
-  //      //add data id to delete button
-  //      tableEdit.querySelectorAll('tr').forEach(row => {
-  //       if(row.querySelector('.btn-del')) {
-  //       id = row.querySelector('[col_name="B1"]').innerText;
-  //       row.querySelector('.btn-del').setAttribute("data-id", id);
-  //     }
-  // }); 
-  // }
-  // // end function delete button
